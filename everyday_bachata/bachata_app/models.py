@@ -20,7 +20,6 @@ class User(models.Model):
 
 class Organizer(models.Model):
     organizer_name = models.CharField(max_length=50)
-    organizer_address = models.CharField(max_length=50)
 
     def __str__(self):
         return f"{self.organizer_name}"
@@ -39,23 +38,26 @@ class Trainers(models.Model):
         return "%s %s" % (self.name, self.surname)
 
 
-class EventType(models.Model):
-    event_type = models.CharField(max_length=10)
-
-    def __str__(self):
-        return f"{self.event_type}"
+EVENT_TYPES = [
+    (1, "Workshops"),
+    (2,"Festival"),
+    (3,"Party")
+]
 
 class Events(models.Model):
     event_name = models.CharField(max_length=100)
     date = models.DateField
     location = models.CharField(max_length=50)
-    price = models.IntegerField(max_length=10)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.CharField(max_length=1000)
     link = models.CharField(max_length=100)
     organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     trainer = models.ForeignKey(Trainers, on_delete=models.CASCADE)
-    type = models.ForeignKey(EventType, on_delete=models.CASCADE)
+    type = models.IntegerField(choices=EVENT_TYPES)
+
+    def __str__(self):
+        return f"{self.event_name} dnia {self.date} w {self.city}"
 
 
 
