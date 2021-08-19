@@ -45,19 +45,20 @@ EVENT_TYPES = [
 ]
 
 class Events(models.Model):
+    start_date = models.DateField
+    end_date = models.DateField
     event_name = models.CharField(max_length=100)
-    date = models.DateField
     location = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.CharField(max_length=1000)
     link = models.CharField(max_length=100)
     organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    trainer = models.ForeignKey(Trainers, on_delete=models.CASCADE)
+    trainer = models.ManyToManyField(Trainers)
     type = models.IntegerField(choices=EVENT_TYPES)
 
     def __str__(self):
-        return f"{self.event_name} dnia {self.date} w {self.city}"
+        return f"{self.event_name} dnia {self.start_date} w {self.city}"
 
 
 
