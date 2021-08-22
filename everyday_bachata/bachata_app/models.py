@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+
 class UserType(models.Model):
     user_type = models.CharField(max_length=10)
 
@@ -37,7 +38,6 @@ class Trainers(models.Model):
     def __str__(self):
         return "%s %s" % (self.name, self.surname)
 
-
 EVENT_TYPES = [
     (1, "Workshops"),
     (2,"Festival"),
@@ -45,16 +45,16 @@ EVENT_TYPES = [
 ]
 
 class Events(models.Model):
-    start_date = models.DateField
-    end_date = models.DateField
+    start_date = models.DateTimeField(auto_now=False)
+    end_date = models.DateTimeField(auto_now=False)
     event_name = models.CharField(max_length=100)
     location = models.CharField(max_length=50)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     description = models.CharField(max_length=1000)
-    link = models.CharField(max_length=100)
+    link = models.CharField(max_length=100, null=True, blank=True)
     organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    trainer = models.ManyToManyField(Trainers)
+    trainer = models.ManyToManyField(Trainers, null=True, blank=True)
     type = models.IntegerField(choices=EVENT_TYPES)
 
     def __str__(self):
