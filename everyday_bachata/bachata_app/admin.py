@@ -3,8 +3,8 @@ from bachata_app.models import Organizer
 from bachata_app.models import City
 from bachata_app.models import Trainers
 from bachata_app.models import Events
-from bachata_app.models import User
-from bachata_app.models import UserType
+from .models import User
+
 
 
 # Register your models here.
@@ -13,6 +13,6 @@ admin.site.register(City)
 admin.site.register(Trainers)
 admin.site.register(Events)
 admin.site.register(User)
-admin.site.register(UserType)
+
 
 

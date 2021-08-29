@@ -1,23 +1,9 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
-class UserType(models.Model):
-    user_type = models.CharField(max_length=10)
-
-    def __str__(self):
-        return f"{self.user_type}"
-
-
-class User(models.Model):
-     login = models.CharField(max_length=50)
-     password = models.CharField(max_length=8)
-     email= models.CharField(max_length=50)
-     type = models.OneToOneField(UserType, on_delete=models.CASCADE)
-
-     def __str__(self):
-         return f"{self.login} , {self.email}"
-
+class User(AbstractUser):
+    pass
 
 class Organizer(models.Model):
     organizer_name = models.CharField(max_length=50)
@@ -54,11 +40,12 @@ class Events(models.Model):
     link = models.CharField(max_length=100, null=True, blank=True)
     organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    trainer = models.ManyToManyField(Trainers, null=True, blank=True)
+    trainer = models.OneToOneField(Trainers, null=True, blank=True, on_delete=models.CASCADE)
     type = models.IntegerField(choices=EVENT_TYPES)
 
     def __str__(self):
-        return f"{self.event_name} dnia {self.start_date} w {self.city}"
+        # return f"{EVENT_TYPES[self.type-1][1]}  w {self.city} dnia {self.start_date}"
+        return f"{self.get_type_display()}  w {self.city} dnia {self.start_date}"
 
 
 
