@@ -9,3 +9,4 @@ urlpatterns = [
     path('list/', views.EventsListView.as_view(), name='events-list'),
     path('details/<int:pk>', views.EventsDetailView.as_view(), name='events-detail')
     ]
+# komentarz
