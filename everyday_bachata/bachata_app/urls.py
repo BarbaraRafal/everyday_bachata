@@ -8,4 +8,5 @@ urlpatterns = [
     path('bachata_app/', views.bachata),
     path('list/', views.EventsListView.as_view(), name='events-list'),
     path('details/<int:pk>', views.EventsDetailView.as_view(), name='events-detail')
+    path('filter/', views.Filter_list.as_view(), name='events-filter')
     ]

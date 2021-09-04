@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import django_filters
 # Create your models here.
 
 class User(AbstractUser):
@@ -46,6 +47,13 @@ class Events(models.Model):
     def __str__(self):
         # return f"{EVENT_TYPES[self.type-1][1]}  w {self.city} dnia {self.start_date}"
         return f"{self.get_type_display()}  w {self.city} dnia {self.start_date}"
+
+class EventsFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr='iexact')
+
+    class Meta:
+        model = Events
+        fields = ['event_name', 'location']
 
 
 
