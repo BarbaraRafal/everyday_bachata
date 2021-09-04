@@ -1,10 +1,10 @@
 from django import forms
 
-from bachata_app.models import Events
+from .models import Events
 
 # Formularz modelu
 
-class EventsForm(forms.Form):
+class EventsForm(forms.ModelForm):
     class Meta:
         model = Events
         fields = ['city', 'type']

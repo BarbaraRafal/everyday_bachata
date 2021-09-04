@@ -10,13 +10,18 @@
 <h2>Nie zapomnij dobrze się bawić!!!</h2>
 
 
-<form action="{% url 'bachata_app:search-results' %}" method="get">
+<form method="post">
     {% csrf_token %}
     {{ form }}
-    <input name="q" type="text" placeholder="Miasto" id ="city">
-    <input name="q" type="text" placeholder="Rodzaj wydarzenia" id="type">
     <input type="submit" value="Szukaj">
 </form>
+<ul>
+{% for event in events %}
+        <li>
+            <a href = "{% url 'bachata_app:events-detail' event.id %}"> {{event}}</a>
+        </li>
+{%endfor%}
+</ul>
 
 </body>
 </html>
