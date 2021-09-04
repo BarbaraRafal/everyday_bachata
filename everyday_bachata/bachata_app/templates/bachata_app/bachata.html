@@ -11,10 +11,10 @@
 
 
 <form action="{% url 'bachata_app:search-results' %}" method="get">
-       {% csrf_token %}
-        {{ form }}
-    <input name="q" type="text" placeholder="Miasto">
-    <input name="q" type="text" placeholder="Rodzaj wydarzenia">
+    {% csrf_token %}
+    {{ form }}
+    <input name="q" type="text" placeholder="Miasto" id ="city">
+    <input name="q" type="text" placeholder="Rodzaj wydarzenia" id="type">
     <input type="submit" value="Szukaj">
 </form>
 

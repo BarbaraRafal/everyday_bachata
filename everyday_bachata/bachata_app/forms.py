@@ -7,5 +7,5 @@ from bachata_app.models import Events
 class EventsForm(forms.Form):
     class Meta:
         model = Events
-        fields = 'city'
-        labels = {"city": "Miasto"}
+        fields = ['city', 'type']
+        labels = {"city": "Miasto", "type": "Rodzaj wydarzenia"}

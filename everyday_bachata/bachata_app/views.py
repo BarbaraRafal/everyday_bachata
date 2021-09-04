@@ -31,6 +31,3 @@ class SearchResultsView(ListView):
         object_list = Events.objects.filter(
             Q(city__icontains=query)|Q(type__icontains=query))
         return object_list
-
-# def search_result(request):
-#     pass
