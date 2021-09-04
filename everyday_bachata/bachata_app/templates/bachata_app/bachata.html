@@ -5,6 +5,18 @@
     <title>Everyday Bachata</title>
 </head>
 <body>
- Każdy dzień jest dobry żeby potańczyć Bachatę
+<h1>Bo każdy dzień jest dobry, żeby potańczyć Bachatę!!!</h1>
+<h2>Wybierz rodzaj wydarzenia i sprawdź co dzieje się w Twoim mieście!!!</h2>
+<h2>Nie zapomnij dobrze się bawić!!!</h2>
+
+
+<form action="{% url 'bachata_app:search-results' %}" method="get">
+       {% csrf_token %}
+        {{ form }}
+    <input name="q" type="text" placeholder="Miasto">
+    <input name="q" type="text" placeholder="Rodzaj wydarzenia">
+    <input type="submit" value="Szukaj">
+</form>
+
 </body>
 </html>
